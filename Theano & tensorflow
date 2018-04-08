@@ -1,0 +1,127 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled1.ipynb",
+      "version": "0.3.2",
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "[View in Colaboratory](https://colab.research.google.com/github/akbdas/deep-learning/blob/master/Theano%20%26%20tensorflow)"
+      ]
+    },
+    {
+      "metadata": {
+        "id": "k9N_mBwn2j32",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 92
+        },
+        "outputId": "c5ee0a36-c073-4011-cd06-751831fa4870"
+      },
+      "cell_type": "code",
+      "source": [
+        "! pip install  theano\n",
+        "import theano\n",
+        "from theano import tensor"
+      ],
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Requirement already satisfied: theano in /usr/local/lib/python3.6/dist-packages\r\n",
+            "Requirement already satisfied: six>=1.9.0 in /usr/local/lib/python3.6/dist-packages (from theano)\r\n",
+            "Requirement already satisfied: numpy>=1.9.1 in /usr/local/lib/python3.6/dist-packages (from theano)\r\n",
+            "Requirement already satisfied: scipy>=0.14 in /usr/local/lib/python3.6/dist-packages (from theano)\r\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": "HHH3A4oJ5ReY",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 74
+        },
+        "outputId": "960aa2f8-2bee-422c-e919-d56e4bf13ae2"
+      },
+      "cell_type": "code",
+      "source": [
+        "a = tensor.dscalar()\n",
+        "b= tensor.dscalar()\n",
+        "\n",
+        "c= a/b\n",
+        "f=theano.function([a,b],c)\n",
+        "result=f(22,7)\n",
+        "print (a, b,c)\n",
+        "print(result)\n",
+        "print(22%1)"
+      ],
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "<TensorType(float64, scalar)> <TensorType(float64, scalar)> Elemwise{true_div,no_inplace}.0\n",
+            "3.142857142857143\n",
+            "0\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "id": "yzAxj7Lb8j0A",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 36
+        },
+        "outputId": "71d78456-caa8-4f66-8869-186f955daf18"
+      },
+      "cell_type": "code",
+      "source": [
+        "import tensorflow as tf\n",
+        "# declare two symbolic floating-point scalars\n",
+        "a = tf.placeholder(tf.float32)\n",
+        "b = tf.placeholder(tf.float32)\n",
+        "# create a simple symbolic expression using the add function\n",
+        "add = tf.add(a, b)\n",
+        "# bind 1.5 to 'a', 2.5 to 'b', and evaluate 'c'\n",
+        "sess = tf.Session()\n",
+        "binding = {a: 1.5, b: 2.5}\n",
+        "c = sess.run(add, feed_dict=binding)\n",
+        "print(c)"
+      ],
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "4.0\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
